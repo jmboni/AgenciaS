@@ -1,0 +1,4 @@
+agencia_base_datos:
+    resource: "@AgenciaBaseDatosBundle/Resources/config/routing.yml"
+    prefix:   /
+

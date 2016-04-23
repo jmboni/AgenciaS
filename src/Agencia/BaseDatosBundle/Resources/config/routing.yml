@@ -1,0 +1,3 @@
+agencia_base_datos_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: AgenciaBaseDatosBundle:Default:index }
