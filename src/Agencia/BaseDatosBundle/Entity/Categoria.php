@@ -6,6 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 use Agencia\BaseDatosBundle\Entity\Afiliados;
 use Agencia\BaseDatosBundle\Entity\Trabajos;
+//use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Agencia\BaseDatosBundle\Entity\Categoria
@@ -50,14 +51,14 @@ class Categoria
      */
     public function __construct()
     {
-        $this->creado = new DateTime();
+        $this->creado = new \DateTime();
     }
 
     /**
      * @ORM\PrePersist
      */
     public function prePersistEvent() {
-        $this->actualizado = new DateTime();
+        $this->actualizado = new \DateTime();
 
         return $this;
     }
@@ -66,8 +67,7 @@ class Categoria
      * @ORM\PreUpdate
      */
     public function preUpdateEvent() {
-        $this->actualizado = new DateTime();
-
+        $this->actualizado = new \DateTime();
         return $this;
     }
 
@@ -99,7 +99,7 @@ class Categoria
      * Set nombre
      *
      * @param string $nombre
-     * @return Category
+     * @return Categoria
      */
     public function setNombre($nombre)
     {
@@ -122,7 +122,7 @@ class Categoria
      * Set creado
      *
      * @param \DateTime $creado
-     * @return Category
+     * @return Categoria
      */
     public function setCreado($creado)
     {
@@ -145,7 +145,7 @@ class Categoria
      * Set actualizado
      *
      * @param \DateTime $actualizado
-     * @return Category
+     * @return Categoria
      */
     public function setActualizado($actualizado)
     {
@@ -185,7 +185,7 @@ class Categoria
      */
     public function removeTrabajo(\Agencia\BaseDatosBundle\Entity\Trabajos $trabajo)
     {
-        $this->trabajo->removeElement($trabajo);
+        $this->removeTrabajo($trabajo);
     }
 
     /**
@@ -230,4 +230,10 @@ class Categoria
     {
         return $this->afiliado;
     }
+
+    public function __toString() {
+        return $this->getNombre();
+    }
+
+
 }

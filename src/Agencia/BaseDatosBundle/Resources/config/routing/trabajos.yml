@@ -1,0 +1,30 @@
+agencia_trabajos:
+    path:     /
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:index" }
+
+agencia_trabajos_show:
+    path:     /{id}/show
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:show" }
+
+agencia_trabajos_new:
+    path:     /new
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:new" }
+
+agencia_trabajos_create:
+    path:     /create
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:create" }
+    methods:  POST
+
+agencia_trabajos_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:edit" }
+
+agencia_trabajos_update:
+    path:     /{id}/update
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:update" }
+    methods:  [POST, PUT]
+
+agencia_trabajos_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:delete" }
+    methods:  [POST, DELETE]

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database name="default" namespace="Agencia\BaseDatosBundle\Model" defaultIdMethod="native">
+
+    <table name="categoria">
+        <column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="nombre" type="varchar" size="255" required="true" index="unique" />
+		<column name="creado" type="timestamp"/>
+		<column name="actualizado" type="timestamp"/>
+    </table>
+
+    <table name="trabajos">
+		<column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+        <column name="categoria_id" type="integer" required="true"/>
+        <column name="tipo" type="varchar" size="255"/>
+		<column name="compania" type="varchar" size="255" required="true"/>
+		<column name="logo" type="varchar" size="255"/>
+		<column name="url" type="varchar" size="255"/>
+		<column name="posicion" type="varchar" size="255" required="true"/>
+		<column name="localidad" type="varchar" size="255" required="true"/>
+		<column name="descripcion" type="longvarchar" required="true"/>
+		<column name="how_to_apply" type="longvarchar" required="true"/>
+		<column name="token" type="varchar" size="255" required="true" index="unique"/>
+		<column name="publico" type="boolean" required="true" default="1"/>
+		<column name="activado" type="boolean" required="true" default="0"/>
+		<column name="email" type="varchar" size="255" required="true"/>
+		<column name="finaliza" type="timestamp"/>
+		<column name="creado" type="timestamp"/>
+		<column name="actualizado" type="timestamp"/>
+		<foreign-key foreignTable="categoria">
+            <reference local="categoria_id" foreign="id" />
+        </foreign-key>
+    </table>
+	
+	<table name="afiliados">
+		<column name="id" type="integer" required="true" primaryKey="true" autoIncrement="true"/>
+		<column name="url" type="varchar" size="255"/>
+		<column name="email" type="varchar" size="255" required="true" index="unique"/>
+		<column name="token" type="varchar" size="255" required="true"/>
+		<column name="activado" type="boolean" required="true" default="0"/>
+		<column name="creado" type="timestamp"/>
+	</table>
+	
+	<table name="categoria_afiliado">
+		<column name="categoria_id" type="integer" required="true" primaryKey="true" onDelete="cascade"/>
+        <column name="afiliado_id" type="integer" required="true" primaryKey="true" onDelete="cascade"/>
+		<foreign-key foreignTable="categoria">
+            <reference local="categoria_id" foreign="id" />
+        </foreign-key>
+		<foreign-key foreignTable="afiliados">
+            <reference local="afiliado_id" foreign="id" />
+        </foreign-key>
+    </table>
+</database>

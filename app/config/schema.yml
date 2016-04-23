@@ -1,0 +1,35 @@
+propel:
+  categoria:
+    id:           ~
+    nombre:         { type: varchar(255), required: true, index: unique }
+
+  trabajos:
+    id:           ~
+    categoria_id: { type: integer, foreignTable: categoria, foreignReference: id, required: true }
+    tipo:         { type: varchar(255) }
+    compania:     { type: varchar(255), required: true }
+    logo:         { type: varchar(255) }
+    url:          { type: varchar(255) }
+    posicion:     { type: varchar(255), required: true }
+    localidad:    { type: varchar(255), required: true }
+    descripcion:  { type: longvarchar, required: true }
+    how_to_apply: { type: longvarchar, required: true }
+    token:        { type: varchar(255), required: true, index: unique }
+    publico:      { type: boolean, required: true, default: 1 }
+    activado:     { type: boolean, required: true, default: 0 }
+    email:        { type: varchar(255), required: true }
+    finliza:      { type: timestamp, required: true }
+    creado:       ~
+    actualizado:  ~
+
+  afiliados:
+    id:           ~
+    url:          { type: varchar(255), required: true }
+    email:        { type: varchar(255), required: true, index: unique }
+    token:        { type: varchar(255), required: true }
+    activado:     { type: boolean, required: true, default: 0 }
+    creado:       ~
+
+  categoria_afiliado:
+    categoria_id:  { type: integer, foreignTable: categoria, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }
+    afiliado_id:   { type: integer, foreignTable: afiliados, foreignReference: id, required: true, primaryKey: true, onDelete: cascade }

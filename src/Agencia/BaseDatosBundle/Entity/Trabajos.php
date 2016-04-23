@@ -4,6 +4,7 @@ namespace Agencia\BaseDatosBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Agencia\BaseDatosBundle\Entity\Categoria;
+//use Symfony\Component\Validator\Constraints\DateTime;
 
 
 /**
@@ -77,14 +78,15 @@ class Trabajos{
      */
     public function __construct()
     {
-        $this->creado = new DateTime();
+        $this->creado = new \DateTime();
+        $this->actualizado =new \DateTime();
     }
 
     /**
      * @ORM\PrePersist
      */
     public function prePersistEvent() {
-        $this->actualizado = new DateTime();
+        $this->actualizado =new \DateTime();
 
         return $this;
     }
@@ -93,7 +95,7 @@ class Trabajos{
      * @ORM\PreUpdate
      */
     public function preUpdateEvent() {
-        $this->actualizado = new DateTime();
+        $this->actualizado = new \DateTime();
 
         return $this;
     }
@@ -475,5 +477,9 @@ class Trabajos{
     public function getCategoria()
     {
         return $this->categoria;
+    }
+
+    public function __toString() {
+        return sprintf('%s at %s (%s)', $this->getPosicion(), $this->getCompania(), $this->getLocalidad());
     }
 }

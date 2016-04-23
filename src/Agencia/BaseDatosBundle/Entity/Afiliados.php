@@ -248,4 +248,8 @@ class Afiliados{
     {
         return $this->categorias;
     }
+
+    public function __toString() {
+        return $this->getUrl();
+    }
 }
