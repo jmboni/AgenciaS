@@ -1,7 +1,0 @@
-agencia_base_datos_agencia_trabajos:
-    resource: "@AgenciaBaseDatosBundle/Resources/config/routing/trabajos.yml"
-    prefix:   /trabajos
-
-agencia_base_datos_homepage:
-    path:     /hello/{name}
-    defaults: { _controller: AgenciaBaseDatosBundle:Default:index }

@@ -1,6 +1,44 @@
-{% extends 'AgenciaBaseDatosBundle ::layout.html.twig' %}
+{% extends 'AgenciaBaseDatosBundle::layout.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href={{ asset('bundles/agenciabasedatos/css/job.css') }} type="text/css" media="all" />
+{% endblock %}
+
+{% block content %}
+    <div id="job">
+        <h1>{{ entity.compania }}</h1>
+        <h2>{{ entity.localidad }}</h2>
+        <h3>
+            {{ entity.posicion }}
+            <small> - {{ entity.tipo }}</small>
+        </h3>
+
+        {% if entity.logo %}
+            <div class="logo">
+                <a href="{{ entity.url }}">
+                    <img src="/uploads/trabajos/{{ entity.logo }}"
+                         alt="{{ entity.compania }} logo" />
+                </a>
+            </div>
+        {% endif %}
+
+        <div class="description">
+            {{ entity.descripcion|nl2br }}
+        </div>
+
+        <h4>How to apply?</h4>
+
+        <p class="how_to_apply">{{ entity.howtoapply }}</p>
+
+        <div class="meta">
+            <small>posted on {{ entity.creado|date('m/d/Y') }}</small>
+        </div>
+
+        <div style="padding: 20px 0">
+            <a href="{{ path('agencia_trabajos_edit', { 'id': entity.id }) }}">
+                Edit
+            </a>
+        </div>
+    </div>
 {% endblock %}

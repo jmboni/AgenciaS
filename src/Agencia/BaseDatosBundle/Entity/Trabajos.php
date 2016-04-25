@@ -4,7 +4,8 @@ namespace Agencia\BaseDatosBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Agencia\BaseDatosBundle\Entity\Categoria;
-//use Symfony\Component\Validator\Constraints\DateTime;
+use Agencia\BaseDatosBundle\Funciones\Ofertas;
+use Agencia\BaseDatosBundle\Funciones\Amigable;
 
 
 /**
@@ -481,5 +482,21 @@ class Trabajos{
 
     public function __toString() {
         return sprintf('%s at %s (%s)', $this->getPosicion(), $this->getCompania(), $this->getLocalidad());
+    }
+
+    // Añadimos estos métodos para hacer url amigables
+    public function getCompaniaSlug()
+    {
+        return Amigable::urlAmigable($this->getCompania()); ;
+    }
+
+    public function getPosicionSlug()
+    {
+        return Amigable::urlAmigable($this->getPosicion());
+    }
+
+    public function getLocalidadSlug()
+    {
+        return Amigable::urlAmigable($this->getLocalidad());
     }
 }

@@ -3,7 +3,7 @@ agencia_trabajos:
     defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:index" }
 
 agencia_trabajos_show:
-    path:     /{id}/show
+    path:     /{compania}/{localidad}/{id}/{posicion}
     defaults: { _controller: "AgenciaBaseDatosBundle:Trabajos:show" }
 
 agencia_trabajos_new:

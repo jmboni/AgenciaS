@@ -23,7 +23,12 @@ class TrabajosController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('AgenciaBaseDatosBundle:Trabajos')->findAll();
+        //$entities = $em->getRepository('AgenciaBaseDatosBundle:Trabajos')->findAll();
+
+        $query = $em->createQuery(
+            'SELECT j FROM AgenciaBaseDatosBundle:Trabajos j WHERE j.creado > :date'
+        )->setParameter('date', date('Y-m-d H:i:s', time() - 86400 * 30));
+        $entities = $query->getResult();
 
         return $this->render('AgenciaBaseDatosBundle:Trabajos:index.html.twig', array(
             'entities' => $entities,
